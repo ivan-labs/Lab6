@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тетріс (Лаб 6)</title>
+
+    <!-- Підключення Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--
+      Ось ключовий момент:
+      Ми підключаємо main.js як модуль.
+      Vite автоматично "підхопить" цей файл.
+    -->
+  <script type="module" crossorigin src="/assets/index-C_yuJHkc.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BM4p3qnQ.css">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+<!-- Екран входу (видимий за замовчуванням, CSS його не ховає) -->
+<div id="login-screen" class="bg-gray-800 p-8 rounded-lg shadow-xl text-center w-full max-w-sm">
+    <h1 class="text-3xl font-bold mb-6">Вітаємо у Тетрісі!</h1>
+    <p class="mb-4">Будь ласка, введіть ваше ім'я:</p>
+    <input type="text" id="username-input" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ваше ім'я...">
+    <button id="start-game-btn" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300">
+        Почати Гру
+    </button>
+</div>
+
+<!-- Ігровий екран (БУДЕ СХОВАНИЙ через style.css) -->
+<div id="game-screen" class="flex flex-col md:flex-row items-start justify-center gap-8 p-4">
+    <!-- Ліва панель: Наступна фігура та Інфо -->
+    <div class="w-full md:w-48 flex md:flex-col gap-8">
+        <!-- Інформація про гру -->
+        <div class="bg-gray-800 p-4 rounded-lg shadow-lg w-full order-2 md:order-1">
+            <h2 class="text-xl font-bold mb-4">Інфо</h2>
+            <div class="space-y-2">
+                <p>Гравець: <span id="username-display" class="font-semibold text-blue-400">...</span></p>
+                <p>Очки: <span id="score-display" class="font-semibold text-green-400">0</span></p>
+                <p>Рівень: <span id="level-display" class="font-semibold text-yellow-400">1</span></p>
+            </div>
+        </div>
+        <!-- Наступна фігура -->
+        <div class="bg-gray-800 p-4 rounded-lg shadow-lg w-full order-1 md:order-2 text-center">
+            <h2 class="text-xl font-bold mb-4">Наступна</h2>
+            <canvas id="next-piece-canvas" width="160" height="160"></canvas>
+        </div>
+    </div>
+
+    <!-- Центральна панель: Ігрове поле -->
+    <div class="flex-shrink-0">
+        <canvas id="tetris-canvas"></canvas>
+    </div>
+
+    <!-- Права панель: Управління (для мобільних) -->
+    <div class="w-full md:w-48 text-gray-400 bg-gray-800 p-4 rounded-lg shadow-lg hidden md:block">
+        <h2 class="text-xl font-bold mb-4">Управління</h2>
+        <ul class="space-y-2">
+            <li><span class="font-semibold text-white">←</span> : Вліво</li>
+            <li><span class="font-semibold text-white">→</span> : Вправо</li>
+            <li><span class="font-semibold text-white">↓</span> : Вниз</li>
+            <li><span class="font-semibold text-white">↑</span> : Обертати</li>
+            <li><span class="font-semibold text-white">Пробіл</span> : Впустити</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Модальне вікно "Гра Закінчена" (БУДЕ СХОВАНО через style.css) -->
+<div id="game-over-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-xl text-center w-full max-w-md">
+        <h1 class="text-4xl font-bold text-red-500 mb-4">Гру Закінчено!</h1>
+        <p class="text-xl mb-2">Ваш результат: <span id="final-score" class="font-bold text-green-400">0</span></p>
+        <div class="my-6">
+            <h2 class="text-2xl font-semibold mb-4">Таблиця Рекордів</h2>
+            <ul id="high-scores-list" class="text-left max-h-60 overflow-y-auto space-y-2 pr-2">
+                <!-- Рекорди будуть тут -->
+            </ul>
+        </div>
+        <button id="restart-game-btn" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-300">
+            Грати Знову
+        </button>
+    </div>
+</div>
+
+<!--
+  Більше тут немає тегу <script> з кодом!
+  Vite додасть його автоматично.
+-->
+</body>
+</html>
+
