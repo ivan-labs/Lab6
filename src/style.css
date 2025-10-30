@@ -1,0 +1,21 @@
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+canvas {
+    background: #1e293b;
+    border-radius: 8px;
+    border: 2px solid #475569;
+}
+
+#game-screen {
+    display: none;
+}
+#game-over-modal {
+    display: none;
+}
+
+#username-input.border-red-500 {
+    border-color: #ef4444;
+}
